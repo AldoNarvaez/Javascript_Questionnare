@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<style>
+#container {
+  width: 500px;
+  height: 100px;
+  position: relative;
+  background: yellow;
+}
+#animate {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background-color: blue;
+}
+</style>
+<body>
+
+<p><button onclick="Move()">Move!!</button></p> 
+
+<div id ="container">
+  <div id ="animate"></div>
+</div>
+
+<script>
+function Move() {
+  const elem = document.getElementById("animate");   
+  let pos = 0;
+  let interval = setInterval(frame, 2);
+  function frame() {
+    if (pos == 400) {
+      pos=0;
+      elem.style.left = pos + "px"; 
+    } else {
+      pos++; 
+      elem.style.left = pos + "px"; 
+    }
+  }
+}
+</script>
+
+</body>
+</html>
