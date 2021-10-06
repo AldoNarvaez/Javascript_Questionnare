@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="">
+ div{
+    border: solid;
+    height: 50px;
+    width: 300px;
+    text-align: center;
+    font-size: medium;
+    background-color: yellow;
+}
+</style>
+</head>
+<body>
+<div>Some text goes here</div>
+<a id='id1'>Show</a>
+    <script>
+    var a=document.getElementById("id1");
+    a.addEventListener("click",showDiv);
+    let div=document.querySelector("div");
+    div.style.visibility = 'hidden';
+
+
+    function showDiv() {
+        div.style.visibility = "visible"
+
+    }
+
+    </script>
+    
+</body>

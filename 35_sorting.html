@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="">
+ 
+</style>
+</head>
+<body>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Age</td>
+    </tr>
+    <tr>
+        <td>Sam</td>
+        <td>30</td>
+    </tr>
+    <tr>
+        <td>John</td>
+        <td>34</td>
+    </tr>
+    <tr>
+        <td>Tim</td>
+        <td>28</td>
+    </tr>
+</table>
+    <script>
+
+let but=document.createElement("button");
+let body=document.querySelector("body");
+body.appendChild(but);
+but.textContent="Sort by age";
+
+but.addEventListener("click",sort);
+
+function sort() {
+    let rows=document.querySelectorAll("tr");
+    console.log(rows);
+    let m=rows.length;
+    let ar=[];
+    for (var i = 1; i <m; i++) {
+        ar.push(rows[i]);
+    }
+    
+    ar.sort((a,b)=>{
+        let c=a.getElementsByTagName("td")[1].textContent;
+        let d=b.getElementsByTagName("td")[1].textContent
+        return c-d;
+    })
+
+    let s= ar.length;
+    let table=document.querySelector("table");
+    
+    for(let j=0; j<s; j++){
+        table.appendChild(ar[j]);
+    }
+
+}
+
+    </script>
+    
+</body>

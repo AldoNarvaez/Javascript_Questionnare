@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script>
+let url1 = "https://jsonplaceholder.typicode.com/users";
+
+let url2 ="https://jsonplaceholder.typicode.com/comments?postId=1";
+
+
+var async = {
+    getAll: function ( urlArray, callbackfun){ 
+    	    let callsArray = [];
+            let n=urlArray.length;
+            var xhttp= new XMLHttpRequest();
+
+            for(let i=0; i<n; i++){
+
+			xhttp.open("GET",urlArray[i],false)
+
+			xhttp.onreadystatechange= function (argument) {
+					if(this.readyState==4 && this.status == 200){
+						callsArray.push(JSON.parse(this.responseText));
+
+					}
+				
+			}
+			xhttp.send();
+
+		}
+		//console.log(callsArray)
+		return callbackfun(callsArray);
+
+
+}
+
+
+            
+    };
+
+
+async.getAll([url1,url2], callback);
+
+function callback(arr) {
+let m= arr.length;
+for (var i = 0; i < m; i++) {
+	console.log("The first url has "+arr[i].length+" elements")
+}
+
+}
+
+
+    </script>
+    
+</body>

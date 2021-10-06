@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style >
+
+div{
+    border: solid;
+    height: 50px;
+    width: 300px;
+    text-align: center;
+}
+    </style>
+        <div >Color Div</div>
+        <button Onclick="changeColor()" id='color'>Change div color</button> 
+    <script >
+
+function changeColor(){
+    let div = document.querySelector("div");
+    let R = Math.floor(Math.random() * 255);
+    let G = Math.floor(Math.random() * 255);
+    let B = Math.floor(Math.random() * 255);
+    div.style.background = "rgb"+"("+R+","+G+","+B+")";
+}
+    </script> 
+</body>
+</html>
