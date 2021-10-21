@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<body>
+
+
+<script>
+
+
+class Person{ 
+    constructor(name,lastName){
+        this.name = name;
+        this.lastName = lastName;
+    }
+
+    fullName(){
+        return this.name+" "+this.lastName;
+    }
+    
+    getData(url){
+        let data = JSON.stringify(this);
+        let init={
+            method: "POST",
+            body: data,
+            headers : new Headers()
+        }
+        let request =new Request(url,init);
+        fetch(request).then(function() {
+
+                console.log("data sent");
+                })
+
+
+    }
+   
+}
+    
+
+
+
+let p1= new Person("Aldo", "Cao")
+
+class Medic extends Person{
+    constructor (name, lastName, specialty="none", active="true"){
+        super(name, lastName);
+        this.specialty = specialty;
+    }
+}
+
+let m1= new Medic("Carlos","Rivera","Oncologist");
+
+console.log(m1.fullName())
+m1.getData("")
+
+</script>
+
+
+
+</body>
+</html>

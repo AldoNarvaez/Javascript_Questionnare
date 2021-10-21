@@ -19,6 +19,12 @@ function differentProperties(obj1,obj2){
             properties.push(key);
         }
     }
+
+    for (let key in obj1){
+        if (!(key in obj2)){
+            properties.push(key);
+        }
+    }
     
     return properties;
 }

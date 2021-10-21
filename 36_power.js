@@ -2,10 +2,7 @@
 function myPowerFn(x) {
 	
 	function power(n) {
-		let c=1;
-		for (var i = 1; i <= n; i++) {
-			c=c*x;
-		}
+		let c=x**n
 		return c
 
 	}

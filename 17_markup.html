@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
+<head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <style>
 </style>
+</head>
+
 <body>
-<div class = "info">  </div>
 <div id="body">
      <div class="info">
           <div></div>
@@ -17,7 +19,6 @@
 
 <script>
 
-console.log(item);
 
 var candidate = {
    name: {
@@ -30,10 +31,10 @@ var candidate = {
    }
 
 }
-console.log(candidate.name.firstname)
-var item=document.getElementsByClassName("info")[1];
-item.childNodes[1].textContent=candidate.name.firstname;
-item.childNodes[3].textContent=candidate.printName();
+var item=document.querySelector(".info");
+let [name,fullName]=item.querySelectorAll("div")
+name.textContent=candidate.name.firstname;
+fullName.textContent=candidate.printName();
 
 
 

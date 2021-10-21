@@ -1,11 +1,31 @@
 
+let random = randi(15,20);
 
-const randFloat=function (min,max) {
-    let dif=max-min;
-    let num=Math.random()*dif;
-    let newRandom=min+num;
-    return newRandom;
+function randi(min,max){
+    let posibleNumbers = [];
+    for (let i = min; i<=max; i++){
+        posibleNumbers.push(i);
+    }
 
-}
+    function takeNumber(){
+        let n = posibleNumbers.length;
+        if (n == 0){
+            return "No posible Numbers available"
+        }
+        let i = Math.floor(Math.random()*n);
+        let result = posibleNumbers[i];
+        posibleNumbers.splice(i, 1);
 
-console.log(randFloat(12,20));
+        return result;
+    }
+        return takeNumber;
+ }
+
+console.log(random())
+console.log(random())
+console.log(random())
+console.log(random())
+console.log(random())
+console.log(random())
+console.log(random())
+console.log(random())

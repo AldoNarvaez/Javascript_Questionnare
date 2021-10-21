@@ -40,9 +40,12 @@ function show(clicked) {
 let b=clicked.target;
 let text=b.textContent;
 
+
 for (var i = 0; i <n; i++) {
     if(text==ps[i].textContent){
-        ps[i+1].style.visibility="visible";
+        if (ps[i+1].style.visibility=="hidden") {
+        ps[i+1].style.visibility="visible";}
+        else{ps[i+1].style.visibility="hidden";}
     }
  
 }

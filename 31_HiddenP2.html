@@ -34,10 +34,16 @@ let b=clicked.target;
 let text=b.textContent;
 
 for (var i = 0; i <n; i++) {
-    body.style.visibility="hidden";
     if(text==ps[i].textContent){
+        if (body.style.visibility!="hidden") {
+        body.style.visibility="hidden";
         ps[i].style.visibility="visible";
-        ps[i].style.background="blue";
+        ps[i].style.background="blue";}
+        else{
+        ps[i].style.visibility=null;        
+        body.style.visibility="visible";
+        ps[i].style.background="";        
+    }
 
     }
  

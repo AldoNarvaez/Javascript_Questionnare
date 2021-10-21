@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<style >
+   
+</style>
+<body>
+    <form class="inputs">
+        <h2>Enter Data</h2>
+        <p>Name:</p>
+        <input type="text" id="name">                  <p>Last Name:</p> 
+        <input type="text" id='lastName'>
+        <p>Phone:</p>
+        <input type="text" id="phone"> <br>
+        <input type="button" value="Add" id="add">
+    </form>
+    <table border="">
+    </table>
+    <form class="edit">
+        <h2>Modify or Delete data</h2>
+        <p>Name:</p>
+        <input type="text" id='EditName'> 
+        <p>Last Name:</p> 
+        <input type="text" id='EditLastName'>
+        <p>Phone:</p>
+        <input type="text" id='EditPhone'> <br>
+        <input type="button" value="Edit" id="Modify">
+        <input type="button" value="Delete" id="Delete">
+    </form>
+    <script>
+var firstData = {
+    1:{name: {
+        firstname: "John",
+        lastName: "Galt",
+        phone: "123-456-7890"
+             }
+        }
+};
+
+let table = document.querySelector("table");
+let formEdit = document.querySelector(".edit");
+let formInit = document.querySelector(".inputs");
+formEdit.style.display="none";
+table.addEventListener("click",editFun);
+
+
+fetch('#').then(
+    addToTable(firstData));
+
+
+
+
+let modifyBut = document.getElementById("Modify");
+let deleteBut = document.getElementById("Delete");
+let addBut = document.getElementById("add");
+addBut,addEventListener("click",add)
+
+function add(argument) {
+    let addName=document.getElementById("name").value;
+    let addLastN=document.getElementById("lastName").value;
+    let addPhone=document.getElementById("phone").value;
+    if (addName && addLastN && addPhone) {
+        let newData={name:{
+            firstname:addName,
+            lastName: addLastN,
+            phone: addPhone
+        }}
+    
+    fetch('#', {
+                method: "POST",
+                body: newData }).then(response => { 
+    let keys = Object.keys(firstData);
+    let ind = keys.map(i=>parseInt(i));
+    let nextInd = Math.max(ind) +1;
+     firstData[nextInd] = newData;
+     addToTable(firstData);
+                                            })
+    document.getElementById("name").value="";
+    document.getElementById("lastName").value="";
+    document.getElementById("phone").value="";
+}
+    
+
+}
+
+
+function editFun(e){
+    let clicked = e.target;
+    if (clicked.getAttribute("id")=="buttonEdit") {
+        e.preventDefault()
+        formEdit.style.display="block"
+        formInit.style.display="none";
+        table.style.display = 'none';
+        let editName = document.getElementById("EditName");
+        let editLastName = document.getElementById("EditLastName");
+        let editPhone = document.getElementById("EditPhone");
+        let row = clicked.getAttribute("row");
+        console.log(row)
+        
+
+        modifyBut.addEventListener("click", modify, {'once':true})
+        deleteBut.addEventListener("click", deleteFun, {'once':true})
+
+        fetch('#').then( 
+        placedData(row) );
+
+        function deleteFun(e) {
+       fetch('#',{method:"DELETE"}).then(()=> {
+            delete firstData[row];
+        addToTable(firstData)
+        formEdit.style.display="none"
+        formInit.style.display="block";
+        table.style.display = "block";})}
+
+        function placedData(){
+        editName.value = firstData[row].name.firstname;
+        editLastName.value = firstData[row].name.lastName;
+        editPhone.value = firstData[row].name.phone;
+    }
+
+        function modify() {
+            let newName=editName.value;
+            let newLastN=editLastName.value;
+            let newPhone=editPhone.value;
+            let newInfo={
+                name:{
+                    firstname:newName,
+                    lastName:newLastN,
+                    phone: newPhone
+                }
+            }
+            fetch("#",{
+                method:"POST"}).then(()=>{
+                firstData[row]=newInfo;
+                addToTable(firstData);
+            })
+
+        formEdit.style.display="none"
+        formInit.style.display="block";
+        table.style.display = "block";
+
+        }
+    
+
+    }
+}
+
+function addToTable(data){
+    table.innerHTML = "";
+    let titlesRow = document.createElement("tr");
+    let tname = document.createElement("th");
+    let tlastName = document.createElement("th");
+    let tphone = document.createElement("th");
+    let tadd = document.createElement("th");
+    tname.innerHTML = "Name";
+    tlastName.innerHTML = "Last Name";
+    tphone.innerHTML = "Phone";
+    tadd.innerHTML = "#Add";
+    titlesRow.appendChild(tname);
+    titlesRow.appendChild(tlastName);
+    titlesRow.appendChild(tphone);
+    titlesRow.appendChild(tadd);
+    table.appendChild(titlesRow);
+    for (let i in data){
+        let row = document.createElement("tr");
+        let name = document.createElement("td");
+        let last = document.createElement("td");
+        let phone = document.createElement("td");
+        let edit = document.createElement("td");
+        let editBut=document.createElement("input")
+        name.textContent = data[i].name.firstname;
+        last.textContent = data[i].name.lastName;
+        phone.textContent = data[i].name.phone;
+        editBut.setAttribute("value","[edit/delete]");
+        editBut.setAttribute("id","buttonEdit");   
+        editBut.setAttribute("row",i);
+        editBut.setAttribute("type","button");
+        edit.appendChild(editBut);
+
+
+        row.appendChild(name);
+        row.appendChild(last);
+        row.appendChild(phone);
+        row.appendChild(edit);
+        table.appendChild(row);
+    }
+}
+
+
+    </script>
+</body>
+</html>
