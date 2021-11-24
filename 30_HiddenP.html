@@ -24,7 +24,7 @@
     <script>
 let ps = document.getElementsByTagName('p');
 let body=document.querySelector("body");
-body.addEventListener("click",show);
+//body.addEventListener("click",show);
 
 let n=ps.length;
 
@@ -32,7 +32,7 @@ for (var i = 0; i <n; i++) {
     if(i%2!=0){
         ps[i].style.visibility="hidden";
         ps[i].style.background="red";
-    }
+    }else{ps[i].addEventListener("click",show)}
 }
 
 function show(clicked) {

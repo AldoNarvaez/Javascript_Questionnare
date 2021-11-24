@@ -27,6 +27,12 @@ body.addEventListener("click",show);
 
 let n=ps.length;
 
+for (var i = 0; i <n; i++) {
+    if(i%2!=0){
+        ps[i].style.visibility="hidden";
+        ps[i].style.background="red";
+    }
+}
 
 function show(clicked) {
 
@@ -34,19 +40,16 @@ let b=clicked.target;
 let text=b.textContent;
 
 for (var i = 0; i <n; i++) {
-    if(text==ps[i].textContent){
-        if (body.style.visibility!="hidden") {
-        body.style.visibility="hidden";
-        ps[i].style.visibility="visible";
-        ps[i].style.background="blue";}
-        else{
-        ps[i].style.visibility=null;        
-        body.style.visibility="visible";
-        ps[i].style.background="";        
+    if (i%2!=0) {
+        if (text==ps[i-1].textContent) {
+            if (ps[i].style.visibility=="hidden") {
+                ps[i].style.visibility="visible";
+                ps[i].style.background="red";}
+            else{ps[i].style.visibility="hidden";} 
+        }else{ps[i].style.visibility="hidden"}
     }
-
-    }
- 
+    
+    
 }
 }
 

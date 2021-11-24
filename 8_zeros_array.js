@@ -1,20 +1,23 @@
 let input=[2,0,4,5,0,2,0,0,3];
+let f=[1,2,3,4];
+console.log(f);
 
 const zeroArray= function (input) {
 	let n=input.length;
+	
+	let m=0;
 
-	input=input.filter(x => x!=0);
-
-	while(input.length<n){
-		input.push(0);
+	for(let i=0; i<n;i++){
+		if (input[i] !=0) {
+			input[m++]=input[i];
+		}
 	}
 
-	//let s=input.length;
+	for(let j=m; j<n; j++){
+		input[j]=0;
+	}
 
-	//for (var i = s; i < n; i++) {
-	//	input.push(0);
-	//}
-	return input;
+	return input
 
 }
 
